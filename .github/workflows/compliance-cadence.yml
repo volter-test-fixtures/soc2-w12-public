@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-      - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2.0.2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.0.2
         with: { bun-version: latest }
       - name: cadence watchdog → open soc2-control-due issues
         env: { GH_TOKEN: "${{ github.token }}", REPO: "${{ github.repository }}", AS_OF: "${{ github.event.inputs.as_of }}" }
