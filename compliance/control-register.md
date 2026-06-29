@@ -75,7 +75,7 @@ Criteria: **61/61** · enforced 10 · tracked 49 · external 2.
 
 | Process | Cadence | Owner | Last evidence | Next due | State | Criteria |
 |---|---|---|---|---|---|---|
-| access-review | quarterly | maintainer | 2026-06-29 (since install) | 2026-09-29 | ok | CC6.2, CC6.3 |
+| access-review | quarterly | maintainer | 2026-09-29 | 2026-12-30 | ok | CC6.2, CC6.3 |
 | vendor-reassessment | annual | leadership | 2026-06-29 (since install) | 2027-06-30 | ok | CC9.2, P6.4, P6.5 |
 | hr-onboard-offboard | per-event | hr | — | — | event-driven | CC6.2, CC1.4 |
 | security-training | annual | hr | 2026-06-29 (since install) | 2027-06-30 | ok | CC1.4, CC2.2 |

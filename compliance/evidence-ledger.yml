@@ -10,7 +10,15 @@ note: >-
 processes_state:
   - process: access-review          # quarterly
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2026-09-29
+        evidence: compliance-evidence-draft/access-review-2026-09-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed the access recertification; access matches least-privilege/SoD; no revocations needed this interval. CC6.2/CC6.3 satisfied."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 210
   - process: vendor-reassessment    # annual
     effective_from: 2026-06-29
     artifacts: []
