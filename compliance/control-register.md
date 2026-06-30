@@ -86,7 +86,7 @@ Criteria: **61/61** · enforced 10 · tracked 49 · external 2.
 | risk-assessment | annual | leadership | 2027-06-29 | 2028-06-29 | ok | CC3.1, CC3.2, CC3.3, CC3.4 |
 | management-review | annual | leadership | 2027-06-29 | 2028-06-29 | ok | CC4.1, CC4.2, CC5.1 |
 | policy-review-ack | annual | leadership | 2027-06-29 | 2028-06-29 | ok | CC1.1, CC2.2, CC5.3 |
-| pen-test | annual | maintainer | 2026-06-29 (since install) | 2027-06-30 | ok | CC7.1 |
+| pen-test | annual | maintainer | 2027-06-29 | 2028-06-29 | ok | CC7.1 |
 | evidence-collection | weekly | maintainer | — | — | liveness-gated (W11) | CC4.1, C1.1 |
 
 ## External residuals (status: external OR an external leg — visible, never faked as automated)
