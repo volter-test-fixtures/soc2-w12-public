@@ -78,5 +78,13 @@ processes_state:
   - process: evidence-collection    # weekly — gate: liveness (asserted by W11 workflow-liveness, not a ledger artifact)
     effective_from: 2026-06-29
     artifacts: []
-# per-event / per-change processes (hr-onboard-offboard, change-mgmt-infra, background-check)
+  - process: hr-onboard-offboard    # per-event — event-driven, template drafted
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/hr-onboard-offboard-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): onboarding/offboarding record template is prepared per CC6.2/CC1.4; HR will complete and attach lifecycle records on each actual joiner/mover/leaver event."
+# per-event / per-change processes (change-mgmt-infra, background-check)
 # are event-driven, not interval-gated; tracked in the register, not currency-gated here.
