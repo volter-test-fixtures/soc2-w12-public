@@ -32,7 +32,12 @@ processes_state:
         time_to_decide_s: 200
   - process: security-training      # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/security-training-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): I, <name>, conducted/verified the annual security-awareness training for all personnel; the completion roster is attached. CC1.4/CC2.2 satisfied."
   - process: ir-tabletop            # annual
     effective_from: 2026-06-29
     artifacts: []
