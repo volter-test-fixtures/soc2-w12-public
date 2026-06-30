@@ -39,7 +39,12 @@ processes_state:
     artifacts: []
   - process: policy-review-ack      # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/policy-review-ack-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): All 13 security policies reviewed for currency; no policies aged >12 months since last change. Policies await formal leadership adoption and employee acknowledgement roster."
   - process: pen-test               # annual
     effective_from: 2026-06-29
     artifacts: []
