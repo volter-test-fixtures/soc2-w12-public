@@ -27,38 +27,65 @@ who must sign (the executive).
 
 ## 2. Run the control's PLAYBOOK (gather + draft — the real work)
 
-Produce a real evidence doc at `compliance-evidence-draft/<process>-<interval_end>.md` and a ledger artifact.
-Per process:
+Produce a real evidence doc at `compliance-evidence-draft/<process>-<interval_end>.md`. **Every** evidence doc
+uses the same skeleton so an auditor reads them uniformly:
 
-- **access-review** — Fetch the current collaborators and compare to the intended roles:
-  `gh api "repos/$REPO/collaborators?affiliation=direct&per_page=100" --jq '[.[]|{login,role:.role_name,perms:.permissions}]'`.
-  Read the intended role matrix from `compliance/policies/access-control-policy.md`. Draft a review table:
-  each user · current access · intended access · **FLAG** anomalies (admin not in the matrix, a leaver still
-  present, perms exceeding role). State the count reviewed and the count flagged. Do **not** revoke anything —
-  that's the executive's decision; you surface it.
-- **policy-review-ack** — diff each policy under `compliance/policies/` against its last change
-  (`git log -p`); reconcile the acknowledgement roster against headcount; flag policies overdue for annual
-  review and staff missing an ack.
-- **vendor-reassessment** — read `compliance/subprocessors.md`; flag any report/DPA older than 12 months.
-- **risk-assessment** — propose new/changed risks from recent incidents + notable diffs since the last
-  assessment; draft register updates.
-- **management-review** — assemble a review pack from the evidence ledger + recent control runs.
+```
+# <Control name> — <interval_end> (<criteria>)
+**Process:** <id>   **Cadence:** <q/annual>   **Review date:** <today>   **Drafted by:** EA (compliance-drafter)
+**Status:** DRAFT — executive review required before signing
+
+## What I gathered     <the raw inputs + the commands/queries used — reproducible>
+## Assessment          <the table/analysis>
+## Findings            <flagged items, or "none">  |  ## Open items needing the executive  <bullets>
+## Coverage / gaps     <what I could NOT see → marked `> un-evidenced: needs <X>`>
+```
+
+Then derive the one-line `assertion:` DRAFT + the §4 decision brief from the Findings + Open items. Per process
+(only `evidence`-bearing, in-repo controls produce a filled doc; the rest honestly degrade — see below):
+
+- **access-review** (quarterly, CC6.2/6.3) — `gh api "repos/$REPO/collaborators?affiliation=direct&per_page=100"
+  --jq '[.[]|{login,role:.role_name,perms:.permissions}]'`; read the intended role matrix in
+  `compliance/policies/access-control-policy.md`. Table: user · current access · intended · **FLAG** (admin
+  not in the matrix, a leaver still present, perms exceeding role). Report count reviewed + count flagged.
+  **Never revoke** — surface for the executive's decision.
+- **policy-review-ack** (annual, CC1.1/CC2.2/CC5.3) — for each `compliance/policies/*.md`:
+  `git log -1 --format=%ai -- <file>` = last change; **FLAG any policy whose last change is >12 months**
+  (annual review overdue). The employee acknowledgement roster is an external HR input → degrade (template a
+  `> un-evidenced: ack roster vs headcount` line for the executive).
+- **vendor-reassessment** (annual, CC9.2/P6.4/P6.5) — parse `compliance/subprocessors.md`'s report/DPA date
+  columns; **FLAG any subprocessor whose report or DPA is >12 months old or missing**. The actual SOC 2
+  PDFs/DPAs are external → degrade (template the collect-and-attach step).
+- **risk-assessment** (annual, CC3.x) — read `compliance/risk-register.md` (last dated). Propose new/changed
+  risks from signal you CAN see: merged PRs + closed incident issues since the last assessment
+  (`gh pr list --state merged --search "merged:>=<lastdate>"`, `gh issue list --label agent-blocked,needs-info`).
+  Draft register row updates; the scoring is the executive's.
+- **management-review** (annual, CC4.1/4.2/CC5.1) — assemble a review pack from `compliance/evidence-ledger.yml`
+  + `control-register.md` (which controls are current vs overdue) + recent control-run history
+  (`gh run list --workflow compliance-cadence.yml`). Summarize deficiencies for leadership sign-off.
 
 ### Honest degrade (W12.8, I5) — never fabricate
 
-If the control needs an input you cannot see (e.g. a vendor's external SOC 2 PDF, a DR-restore log that lives
-in infra), produce a **template** with the missing piece marked
-`> un-evidenced: needs <X> from the executive` — **never invent the assessment or the result.** For
-**world-act** controls (`dr-test`, `pen-test`, `ir-tabletop`), you draft the *record template* only; the
-executive performs the act and attaches the **artifact-of-performance** (the log/report) on the PR or commits
-it to `compliance-evidence`.
+If the control needs an input you cannot see (a vendor's external SOC 2 PDF, a DR-restore log in infra, an HR
+roster), put it under **## Coverage / gaps** as `> un-evidenced: needs <X> from the executive` and template the
+step — **never invent the assessment or the result.** For **world-act** controls (`dr-test`, `pen-test`,
+`ir-tabletop`, `security-training`, `background-check`, `hr-onboard-offboard`) you draft the *record template*
+only; the executive performs the act and attaches the **artifact-of-performance** (log/report/roster) on the PR
+or commits it to `compliance-evidence`. A degraded draft is honest and acceptable — a fabricated one is a
+firing offense for an auditor.
 
-## 3. Open the gated PR (W12.3)
+## 3. Produce the change — let the EFFECT propose the PR (do NOT open it yourself, W12.3)
 
-Branch `agent/issue-<N>` (N = the issue number — this lets `reconcile-merged-issues.ts` auto-close the issue
-on merge). Commit:
-- the evidence doc, and
-- the **ledger artifact** appended to `compliance/evidence-ledger.yml` under the process, with:
+**Just modify the working tree and STOP — do not branch, commit, push, or open a PR.** The standard propose
+**effect** (the job step after you) commits the tree, opens the gated PR on `agent/issue-<N>` (so
+`reconcile-merged-issues.ts` auto-closes the issue), dispatches `ci` + `agent-review` + `human-approval` + the
+**`compliance-verifier`** (via `propose_dispatch_reviews`), and arms auto-merge. If you open a PR yourself you
+**double-propose** and the effect's branch/push conflicts — leave the proposing to the effect (exactly like the
+`develop` agent does). Your job is the *content*, not the plumbing.
+
+Write into the tree:
+- the **evidence doc** at `compliance-evidence-draft/<process>-<interval_end>.md`, and
+- the **ledger artifact** appended to `compliance/evidence-ledger.yml` under the process:
   ```yaml
   - interval_end: <the interval end date>
     evidence: compliance-evidence-draft/<process>-<interval_end>.md
@@ -69,15 +96,13 @@ on merge). Commit:
   **Do not set `source: human-attested`, `assertion_author`, or `approver`** — those are the executive's, set
   when they edit the assertion and approve. The currency check rejects a human-attested artifact whose
   `assertion_author` ≠ `approver`, so a pre-signed draft would (correctly) fail.
+- **Re-render the register**: run `bun scripts/soc2-register.ts render` (leave the refreshed
+  `compliance/control-register.md` in the tree). The rendered register shows each process's last-evidence/state,
+  so an un-rendered ledger change trips the `soc2-register-check` drift gate.
 
-- **Re-render the register** after appending the artifact: run `bun scripts/soc2-register.ts render` and
-  commit the refreshed `compliance/control-register.md` in the SAME PR. The rendered register shows each
-  process's last-evidence/state, so an un-rendered ledger change trips the `soc2-register-check` drift gate.
-  (The executive, when they edit the `assertion`, re-renders too — a one-liner — before approving.)
-
-The PR body IS the **decision brief** (§4). The PR goes through the normal effect (dispatches `ci`,
-`agent-review`, `human-approval`); `compliance/**` is human-required, so a maintainer Approve is forced —
-that Approve is the executive's signature.
+Write the **decision brief** (§4) to `.agent-run/artifacts/pr.md` — the effect uses it as the PR body.
+`compliance/**` is human-required, so the effect's PR forces a maintainer Approve — that Approve is the
+executive's signature.
 
 ## 4. The decision brief (the PR body — one screen, W12.6)
 
