@@ -78,7 +78,7 @@ Criteria: **61/61** · enforced 10 · tracked 49 · external 2.
 | access-review | quarterly | maintainer | 2026-09-29 | 2026-12-30 | ok | CC6.2, CC6.3 |
 | vendor-reassessment | annual | leadership | 2027-06-29 | 2028-06-29 | ok | CC9.2, P6.4, P6.5 |
 | hr-onboard-offboard | per-event | hr | — | — | event-driven | CC6.2, CC1.4 |
-| security-training | annual | hr | 2026-06-29 (since install) | 2027-06-30 | ok | CC1.4, CC2.2 |
+| security-training | annual | hr | 2027-06-29 | 2028-06-29 | ok | CC1.4, CC2.2 |
 | background-check | per-event | hr | — | — | event-driven | CC1.1, CC1.4 |
 | ir-tabletop | annual | maintainer | 2026-06-29 (since install) | 2027-06-30 | ok | CC7.3, CC7.4 |
 | dr-test | annual | maintainer | 2026-06-29 (since install) | 2027-06-30 | ok | A1.3, CC7.5, CC9.1 |
