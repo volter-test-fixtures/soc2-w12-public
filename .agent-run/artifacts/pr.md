@@ -1,20 +1,16 @@
-## Decision brief — vendor-reassessment (annual)
-**Criteria:** CC9.2, P6.4, P6.5   **Owner (you):** leadership
+## Decision brief — hr-onboard-offboard (per-event)
+**Criteria:** CC6.2, CC1.4   **Owner (you):** hr
 
-**What I did:** Parsed `compliance/subprocessors.md` for SOC 2 report and DPA dates across all 7 listed entities. Cross-referenced against `vendor-management-policy.md`. No actual dates exist in the inventory — all SOC 2 report entries are qualitative ("Yes", "Verify") and all DPA entries are `[link]` placeholders.
+**What I did:** Drafted the onboarding/offboarding record template covering joiner/mover/leaver lifecycle events per HR Security Policy and Access Control Policy. This is a **world-act** control — the actual provisioning/deprovisioning is performed by HR; this template records the artifact-of-performance.
 
-**Evidence:** [Evidence doc](compliance-evidence-draft/vendor-reassessment-2027-06-29.md) — full analysis with per-subprocessor table, risk tiers, and flagged items.
+**Evidence:** [Evidence doc](compliance-evidence-draft/hr-onboard-offboard-2027-06-29.md)
 
-**Findings / anomalies:**
-- 🔴 **SOC 2 reports missing (5/5 data-processing subprocessors):** None collected or committed. GitHub and Cloudflare reports exist at their trust centers but not downloaded. Proxy, OpenRouter, and model providers are completely unverified.
-- 🔴 **No signed DPAs on file (6/6 requiring one):** All entries are placeholder `[link]`. Legal DPAs not signed.
-- 🔴 **High-risk chain (proxy → OpenRouter → model providers) completely unevidenced:** This is where source code leaves the repo boundary in-flight.
-- ⚠️ **Subprocessors.md header placeholder** (`[OWNER]`, `[DATE]`) and compliance platform row unresolved.
+**Findings / anomalies:** None — no personnel events have occurred to date (first interval). The template and policies are in place and aligned with CC6.2 (register/authorize/deprovision credentials ≤24h) and CC1.4 (commitment to competence through background checks, training, and documented access).
 
 **Open items needing YOUR judgment / inputs only you can provide:**
-1. **Collect SOC 2 reports** from GitHub Trust Center, Cloudflare Trust Hub, the proxy operator, OpenRouter, and each model provider. Commit to `compliance-evidence/`.
-2. **Sign DPAs** with all data-processing subprocessors. Commit signed copies.
-3. **Fill inventory metadata** — set owner name and review date in `compliance/subprocessors.md`.
-4. **Resolve compliance platform** placeholder if a platform has been onboarded.
+- On each joiner event: run the onboarding checklist, complete Section A of the template, and attach/commit the completed record
+- On each leaver event: complete Section B, revoke ALL access same day (≤24h), rotate shared credentials, and attach/commit the completed record
+- On each mover/role-change event: complete Section C, ensuring old-role access is revoked and new-role access follows least-privilege
+- Confirm the shared credential inventory is maintained so offboarding rotation is feasible within <24h
 
-**To sign:** Edit the `assertion:` line in `compliance/evidence-ledger.yml` under `vendor-reassessment` to your own words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>`, commit the collected SOC 2 reports and signed DPAs as artifacts-of-performance, then Approve. _I drafted this; the decision and the signature are yours._
+**To sign:** edit the `assertion:` line in the ledger artifact (`compliance/evidence-ledger.yml`) to your own words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>`, then Approve. _I drafted this; the decision and the signature are yours._
