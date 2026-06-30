@@ -21,7 +21,15 @@ processes_state:
         time_to_decide_s: 210
   - process: vendor-reassessment    # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/vendor-reassessment-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed subprocessor risk; the inventory lacks dated reports/DPAs (flagged) and I will collect them; no vendor blocked this interval pending collection. CC9.2/P6.4/P6.5."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
   - process: security-training      # annual
     effective_from: 2026-06-29
     artifacts: []
