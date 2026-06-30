@@ -74,7 +74,12 @@ processes_state:
         time_to_decide_s: 180
   - process: pen-test               # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/pen-test-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): The external pen test report and any remediated findings are attached; the automated scanning program operated continuously across this interval. CC7.1 satisfied."
   - process: evidence-collection    # weekly — gate: liveness (asserted by W11 workflow-liveness, not a ledger artifact)
     effective_from: 2026-06-29
     artifacts: []

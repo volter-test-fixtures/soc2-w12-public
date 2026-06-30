@@ -1,20 +1,19 @@
-## Decision brief — vendor-reassessment (annual)
-**Criteria:** CC9.2, P6.4, P6.5   **Owner (you):** leadership
+## Decision brief — pen-test (annual)
+**Criteria:** CC7.1   **Owner (you):** maintainer
 
-**What I did:** Parsed `compliance/subprocessors.md` for SOC 2 report and DPA dates across all 7 listed entities. Cross-referenced against `vendor-management-policy.md`. No actual dates exist in the inventory — all SOC 2 report entries are qualitative ("Yes", "Verify") and all DPA entries are `[link]` placeholders.
+**What I did:** Drafted the pen-test record template for the 2027-06-29 interval. This is a **world-act** — I cannot commission or perform an external pen test. I documented the automated scanning already in place (SAST, secret-scan, dependency review, actions hardening, supply-chain checks), defined the system boundary for a pen test, and flagged all items requiring your action.
 
-**Evidence:** [Evidence doc](compliance-evidence-draft/vendor-reassessment-2027-06-29.md) — full analysis with per-subprocessor table, risk tiers, and flagged items.
+**Evidence:** [`compliance-evidence-draft/pen-test-2027-06-29.md`](compliance-evidence-draft/pen-test-2027-06-29.md)
 
 **Findings / anomalies:**
-- 🔴 **SOC 2 reports missing (5/5 data-processing subprocessors):** None collected or committed. GitHub and Cloudflare reports exist at their trust centers but not downloaded. Proxy, OpenRouter, and model providers are completely unverified.
-- 🔴 **No signed DPAs on file (6/6 requiring one):** All entries are placeholder `[link]`. Legal DPAs not signed.
-- 🔴 **High-risk chain (proxy → OpenRouter → model providers) completely unevidenced:** This is where source code leaves the repo boundary in-flight.
-- ⚠️ **Subprocessors.md header placeholder** (`[OWNER]`, `[DATE]`) and compliance platform row unresolved.
+- ⚠️ No external pen test conducted yet — this is the first annual interval (effective 2026-06-29)
+- ⚠️ Automated scanners (Semgrep, CodeQL, gitleaks, dependency-review, zizmor) run continuously but are not a substitute for a human-led pen test
+- ℹ️ All automated scanners passing — no blocking security findings currently outstanding
 
 **Open items needing YOUR judgment / inputs only you can provide:**
-1. **Collect SOC 2 reports** from GitHub Trust Center, Cloudflare Trust Hub, the proxy operator, OpenRouter, and each model provider. Commit to `compliance-evidence/`.
-2. **Sign DPAs** with all data-processing subprocessors. Commit signed copies.
-3. **Fill inventory metadata** — set owner name and review date in `compliance/subprocessors.md`.
-4. **Resolve compliance platform** placeholder if a platform has been onboarded.
+- **Commission an external pen test** covering the system boundary (Actions workflows, branch protection, merge-boundary controls, egress lockdown, supply-chain checks, model proxy integration)
+- **Attach the pen test report** to this record under `compliance-evidence/pen-test/`
+- **Track findings** in the risk register and remediate per change management policy
+- (> un-evidenced: I cannot commission tests, receive reports, or validate findings)
 
-**To sign:** Edit the `assertion:` line in `compliance/evidence-ledger.yml` under `vendor-reassessment` to your own words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>`, commit the collected SOC 2 reports and signed DPAs as artifacts-of-performance, then Approve. _I drafted this; the decision and the signature are yours._
+**To sign:** edit the `assertion:` line in the ledger artifact to your own words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>` (+ attach the pen test report as the artifact-of-performance), then Approve. _I drafted this; the decision and the signature are yours._
