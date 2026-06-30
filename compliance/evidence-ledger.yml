@@ -38,7 +38,12 @@ processes_state:
     artifacts: []
   - process: dr-test                # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/dr-test-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): I performed the BCP/DR restore test and documented the results in compliance-evidence-draft/dr-test-2027-06-29.md; recovery objectives met / exceptions noted. A1.3/CC7.5/CC9.1."
   - process: risk-assessment        # annual
     effective_from: 2026-06-29
     artifacts:
