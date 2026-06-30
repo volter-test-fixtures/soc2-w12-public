@@ -1,20 +1,21 @@
-## Decision brief — vendor-reassessment (annual)
-**Criteria:** CC9.2, P6.4, P6.5   **Owner (you):** leadership
+## Decision brief — background-check (per-event)
+**Criteria:** CC1.1, CC1.4   **Owner (you):** hr
 
-**What I did:** Parsed `compliance/subprocessors.md` for SOC 2 report and DPA dates across all 7 listed entities. Cross-referenced against `vendor-management-policy.md`. No actual dates exist in the inventory — all SOC 2 report entries are qualitative ("Yes", "Verify") and all DPA entries are `[link]` placeholders.
+**What I did:** Drafted the pre-employment background screening record template for the 2027-06-29 due date.
+This is a **WORLD-ACT** control — the screening itself is performed by HR via the org's external vendor,
+not by this agent. I prepared the template record HR fills in for each hire, including check components,
+vendor reference, result, and attestation fields.
 
-**Evidence:** [Evidence doc](compliance-evidence-draft/vendor-reassessment-2027-06-29.md) — full analysis with per-subprocessor table, risk tiers, and flagged items.
+**Evidence:** [Evidence doc](compliance-evidence-draft/background-check-2027-06-29.md) — screening record template
 
-**Findings / anomalies:**
-- 🔴 **SOC 2 reports missing (5/5 data-processing subprocessors):** None collected or committed. GitHub and Cloudflare reports exist at their trust centers but not downloaded. Proxy, OpenRouter, and model providers are completely unverified.
-- 🔴 **No signed DPAs on file (6/6 requiring one):** All entries are placeholder `[link]`. Legal DPAs not signed.
-- 🔴 **High-risk chain (proxy → OpenRouter → model providers) completely unevidenced:** This is where source code leaves the repo boundary in-flight.
-- ⚠️ **Subprocessors.md header placeholder** (`[OWNER]`, `[DATE]`) and compliance platform row unresolved.
+**Findings / anomalies:** None — template-only draft; no screening performed by this agent.
 
 **Open items needing YOUR judgment / inputs only you can provide:**
-1. **Collect SOC 2 reports** from GitHub Trust Center, Cloudflare Trust Hub, the proxy operator, OpenRouter, and each model provider. Commit to `compliance-evidence/`.
-2. **Sign DPAs** with all data-processing subprocessors. Commit signed copies.
-3. **Fill inventory metadata** — set owner name and review date in `compliance/subprocessors.md`.
-4. **Resolve compliance platform** placeholder if a platform has been onboarded.
+- Attach the completed screening record(s) with vendor results for each hire this period
+- Attach the screening vendor's SOC 2 / background-check program report (vendor due diligence)
+- For any hire where a background check was not performed, document the lawful rationale
 
-**To sign:** Edit the `assertion:` line in `compliance/evidence-ledger.yml` under `vendor-reassessment` to your own words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>`, commit the collected SOC 2 reports and signed DPAs as artifacts-of-performance, then Approve. _I drafted this; the decision and the signature are yours._
+**To sign:** edit the `assertion:` line in the ledger artifact (`compliance/evidence-ledger.yml`) to your own
+words, set `source: human-attested`, `assertion_author: <your login>`, `approver: <your login>`, attach the
+completed screening record and vendor report as artifacts-of-performance, then **Approve** this PR.
+_I drafted this template; the decision, the signature, and the screening are yours._
