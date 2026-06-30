@@ -39,9 +39,12 @@ processes_state:
     artifacts:
       - interval_end: 2027-06-29
         evidence: compliance-evidence-draft/management-review-2027-06-29.md
-        source: ai-drafted
+        source: human-attested
         verifier_findings: 0
-        assertion: "DRAFT (executive: edit this to your own words and sign): This management review assessed the SOC 2 control environment as of 2026-06-30. All periodic controls are current; no overdue deficiencies were identified beyond the surfaced workflow findings. The Type-II observation window is in progress."
+        assertion: "I, yueranyuan, performed the management review of the control program; I acknowledge the surfaced control states and the Security-run finding; the program is operating. CC4.1/CC4.2/CC5.1."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
   - process: policy-review-ack      # annual
     effective_from: 2026-06-29
     artifacts:
