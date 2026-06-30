@@ -39,7 +39,15 @@ processes_state:
     artifacts: []
   - process: policy-review-ack      # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/policy-review-ack-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed all 13 policies; none is overdue for annual review this interval; I accept the shipped set as our posture pending adoption. CC1.1/CC2.2/CC5.3."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 180
   - process: pen-test               # annual
     effective_from: 2026-06-29
     artifacts: []
