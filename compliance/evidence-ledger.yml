@@ -35,7 +35,12 @@ processes_state:
     artifacts: []
   - process: ir-tabletop            # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/ir-tabletop-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): I, <your-login>, conducted the incident-response tabletop exercise for the 2027 interval; the exercise was completed and gaps (if any) are recorded in the exercise record. CC7.3/CC7.4 satisfied."
   - process: dr-test                # annual
     effective_from: 2026-06-29
     artifacts: []
