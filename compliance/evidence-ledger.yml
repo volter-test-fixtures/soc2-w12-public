@@ -33,7 +33,15 @@ processes_state:
     artifacts: []
   - process: risk-assessment        # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/risk-assessment-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed the enterprise risk assessment; I accept the drafted risk rows and will score/treat them; no critical unmitigated risk this interval. CC3.1-3.4."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
   - process: management-review      # annual
     effective_from: 2026-06-29
     artifacts: []
