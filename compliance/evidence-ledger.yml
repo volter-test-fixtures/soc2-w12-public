@@ -52,7 +52,15 @@ processes_state:
         time_to_decide_s: 200
   - process: management-review      # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/management-review-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, performed the management review of the control program; I acknowledge the surfaced control states and the Security-run finding; the program is operating. CC4.1/CC4.2/CC5.1."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
   - process: policy-review-ack      # annual
     effective_from: 2026-06-29
     artifacts:
