@@ -36,7 +36,12 @@ processes_state:
     artifacts: []
   - process: management-review      # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/management-review-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): This management review assessed the SOC 2 control environment as of 2026-06-30. All periodic controls are current; no overdue deficiencies were identified beyond the surfaced workflow findings. The Type-II observation window is in progress."
   - process: policy-review-ack      # annual
     effective_from: 2026-06-29
     artifacts:
