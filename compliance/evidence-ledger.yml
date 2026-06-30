@@ -33,7 +33,12 @@ processes_state:
     artifacts: []
   - process: risk-assessment        # annual
     effective_from: 2026-06-29
-    artifacts: []
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/risk-assessment-2027-06-29.md
+        source: ai-drafted
+        verifier_findings: 0
+        assertion: "DRAFT (executive: edit this to your own words and sign): Assessed enterprise risks per CC3.1–3.4; no new material risks identified from signal available in-repo; no incidents occurred; owners need assignment, header needs dating, R10 decision pending."
   - process: management-review      # annual
     effective_from: 2026-06-29
     artifacts: []
