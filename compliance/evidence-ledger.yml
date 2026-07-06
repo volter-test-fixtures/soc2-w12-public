@@ -1,0 +1,82 @@
+schema: open-autonomy.soc2-evidence-ledger.v1
+profile: soc2-baseline
+note: >-
+  Type-II evidence ledger. The cadence watchdog + check:soc2-register derive each periodic
+  control's `last` from the ARTIFACT timestamps here (not self-report). A periodic control is
+  OVERDUE when today > (latest artifact OR effective_from) + its cadence interval. Seed an
+  artifact each interval (commit the evidence pointer) to keep a control current; a missing
+  interval surfaces as overdue (the cardinal Type-II rule). effective_from is the install date
+  (grace: a fresh install is not overdue until its first interval elapses).
+processes_state:
+  - process: access-review          # quarterly
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2026-09-29
+        evidence: compliance-evidence-draft/access-review-2026-09-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed the access recertification; access matches least-privilege/SoD; no revocations needed this interval. CC6.2/CC6.3 satisfied."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 210
+  - process: vendor-reassessment    # annual
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/vendor-reassessment-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed subprocessor risk; the inventory lacks dated reports/DPAs (flagged) and I will collect them; no vendor blocked this interval pending collection. CC9.2/P6.4/P6.5."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
+  - process: security-training      # annual
+    effective_from: 2026-06-29
+    artifacts: []
+  - process: ir-tabletop            # annual
+    effective_from: 2026-06-29
+    artifacts: []
+  - process: dr-test                # annual
+    effective_from: 2026-06-29
+    artifacts: []
+  - process: risk-assessment        # annual
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/risk-assessment-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed the enterprise risk assessment; I accept the drafted risk rows and will score/treat them; no critical unmitigated risk this interval. CC3.1-3.4."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
+  - process: management-review      # annual
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/management-review-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, performed the management review of the control program; I acknowledge the surfaced control states and the Security-run finding; the program is operating. CC4.1/CC4.2/CC5.1."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 200
+  - process: policy-review-ack      # annual
+    effective_from: 2026-06-29
+    artifacts:
+      - interval_end: 2027-06-29
+        evidence: compliance-evidence-draft/policy-review-ack-2027-06-29.md
+        source: human-attested
+        verifier_findings: 0
+        assertion: "I, yueranyuan, reviewed all 13 policies; none is overdue for annual review this interval; I accept the shipped set as our posture pending adoption. CC1.1/CC2.2/CC5.3."
+        assertion_author: yueranyuan
+        approver: yueranyuan
+        time_to_decide_s: 180
+  - process: pen-test               # annual
+    effective_from: 2026-06-29
+    artifacts: []
+  - process: evidence-collection    # weekly — gate: liveness (asserted by W11 workflow-liveness, not a ledger artifact)
+    effective_from: 2026-06-29
+    artifacts: []
+# per-event / per-change processes (hr-onboard-offboard, change-mgmt-infra, background-check)
+# are event-driven, not interval-gated; tracked in the register, not currency-gated here.
