@@ -22,3 +22,4 @@
 | 2026-11-02T15-45-27Z | evidence-collection | evidence/2026-11-02T15-45-27Z/SUMMARY.md |
 | 2026-11-09T16-12-45Z | evidence-collection | evidence/2026-11-09T16-12-45Z/SUMMARY.md |
 | 2026-11-16T15-41-09Z | evidence-collection | evidence/2026-11-16T15-41-09Z/SUMMARY.md |
+| 2026-11-23T18-01-44Z | evidence-collection | evidence/2026-11-23T18-01-44Z/SUMMARY.md |
